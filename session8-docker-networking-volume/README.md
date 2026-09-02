@@ -1,11 +1,11 @@
-# 🌐 Docker Networking & Volumes Homework
+# Docker Networking & Volumes Homework
 
 **Name:** Durga Prasad  
 **Enrollment Number:** 10012  
 
 ---
 
-## 📌 Task 1: 3-Tier Container Networking (Custom Bridge Networks)
+## Task 1: 3-Tier Container Networking (Custom Bridge Networks)
 
 ### Architecture Overview
 - **`net-frontend`**: Network for frontend web server.
@@ -48,7 +48,7 @@ docker network connect net-db backend-container
 
 ---
 
-## 📌 Task 2: Host Network Mode
+## Task 2: Host Network Mode
 
 In Host Networking mode (`--network host`), the container shares the host system's IP address and network stack directly without port mapping overhead.
 
@@ -64,7 +64,7 @@ curl http://127.0.0.1
 
 ---
 
-## 📌 Task 3: Bind Mount Live Reload
+## Task 3: Bind Mount Live Reload
 
 Bind mounts link a local host directory directly to a container path, enabling real-time content updates without rebuilding or restarting containers.
 
@@ -91,7 +91,7 @@ curl http://127.0.0.1:8087
 
 ---
 
-## 📌 Task 4: Docker Overlay Network Research
+## Task 4: Docker Overlay Network Research
 
 ### What is an Overlay Network?
 An **Overlay Network** is a distributed network driver in Docker that enables communication between containers running across **multiple physical or virtual Docker hosts** (nodes in a Docker Swarm cluster).
