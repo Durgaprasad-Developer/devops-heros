@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Session 9: Kubernetes Fundamentals & Cluster Architecture
 
 **Author:** Durga Prasad  
@@ -168,3 +169,13 @@ kubeconfig: Configured
 | `kube-proxy` | Maintains `iptables`/IPVS rules on each node. Enables Services to route traffic to pods. |
 | `Container Runtime (containerd)` | Actually runs containers. Kubernetes uses CRI (Container Runtime Interface) standard. |
 | `Pod` | Smallest deployable unit. Contains 1+ containers sharing same network namespace and storage volumes. |
+=======
+# Resources
+
+- https://kubernetes.io/docs/tutorials/kubernetes-basics/
+- https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Farm64%2Fstable%2Fbinary+download 
+
+- https://kubernetes.io/docs/concepts/architecture/
+
+- https://github.com/Nency-Ravaliya/Kubernetes 
+>>>>>>> upstream/main

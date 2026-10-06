@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # DevOps Heros — Comprehensive Coursework & Project Portfolio
 
 **Student Name:** Durga Prasad  
@@ -53,3 +54,14 @@
 * **Infrastructure as Code:** HashiCorp Terraform, AWS (VPC, EC2, S3, IAM)
 * **Security & Quality:** Flake8, Pytest, CodeQL (SAST), pip-audit (SCA), Aqua Security Trivy
 * **Observability & GitOps:** Prometheus, Grafana, ArgoCD
+=======
+# devops-heros
+
+## DevOps HomeWork
+- https://docs.google.com/document/d/1cjXFYf2Thm8cBEN-0C48B-v02cj3jGLd47lcO18prHE/edit?usp=sharing
+
+## Submission link
+- Section A: https://forms.gle/ydjAJcwxjpjBXgxB8
+- Section B: https://forms.gle/pAuXQaokwVzhRzit6                      
+
+>>>>>>> upstream/main

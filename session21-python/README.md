@@ -1,5 +1,6 @@
 # Session 21 — DevOps Final Capstone: TaskBoard (Python)
 
+<<<<<<< HEAD
 **Author:** Durga Prasad  
 **Enrollment Number:** 10012  
 **Course:** SST DevOps & Cloud [SWE]  
@@ -7,6 +8,9 @@
 **Repository:** devops-heros / session21-python  
 
 ---
+=======
+## 1. What we are building
+>>>>>>> upstream/main
 
 TaskBoard is a small but realistic SaaS-style project management application:
 
