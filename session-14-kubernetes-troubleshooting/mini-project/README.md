@@ -1,6 +1,5 @@
 # Kubernetes Troubleshooting Challenge
 
-<<<<<<< HEAD
 **Name:** Durga Prasad  
 **Enrollment Number:** 10012  
 **Course:** SST DevOps & Cloud [SWE]  
@@ -10,9 +9,6 @@
 ---
 
 ## Troubleshooting Methodology
-=======
-Your job is to:
->>>>>>> upstream/main
 
 ```text
 Deploy
@@ -40,42 +36,23 @@ Verify
 
 ## Project Scenario
 
-<<<<<<< HEAD
 You have a simple Nginx application running inside Kubernetes:
 * **Deployment** (`deployment.yaml`): 2 replicas of `nginx:1.27` with label `app: troubleshooting-app`.
 * **Service** (`service.yaml`): ClusterIP Service targeting port 80 with selector `app: troubleshooting-app`.
 * **Broken Pod** (`broken-pod.yaml`): Diagnostic pod configured with an invalid image tag.
 
 The goal is to deploy the baseline, observe healthy operations, systematically reproduce failures, investigate using the 5 core commands without guessing, resolve root causes, and verify recovery.
-=======
-You have a simple Nginx application running inside Kubernetes.
-
-You have:
-* Deployment
-* Service
-* Pods
-
-Your application should be accessible through the Service. But your team has reported that something is wrong.
-
-Your job is to find and fix the problems.
->>>>>>> upstream/main
 
 ---
 
 ## 1. Deploy The Application
 
-<<<<<<< HEAD
 Apply deployment and service:
-=======
-Run:
-
->>>>>>> upstream/main
 ```bash
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 ```
 
-<<<<<<< HEAD
 **Live Cluster Output:**
 ```text
 deployment.apps/troubleshooting-app created
@@ -96,20 +73,12 @@ troubleshooting-app-59d4957864-sdc6r   1/1     Running   0          25s
 
 NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
 troubleshooting-service   ClusterIP   10.100.252.71   <none>        80/TCP    25s
-=======
-Check:
-
-```bash
-kubectl get pods
-kubectl get service
->>>>>>> upstream/main
 ```
 
 ---
 
 ## 2. Check The Application
 
-<<<<<<< HEAD
 Check pods with IP and node allocations:
 ```bash
 kubectl get pods -l app=troubleshooting-app -o wide
@@ -157,61 +126,15 @@ working. Further configuration is required.</p>
 </html>
 ```
 
-=======
-Run:
-
-```bash
-kubectl get pods -o wide
-```
-
-Then:
-
-```bash
-kubectl describe pod <pod-name>
-```
-
-Then:
-
-```bash
-kubectl logs <pod-name>
-```
-
-Then:
-
-```bash
-kubectl exec -it <pod-name> -- bash
-```
-
-Inside the container:
-
-```bash
-curl localhost
-```
-
-You should get the Nginx response.
-
->>>>>>> upstream/main
 ---
 
 ## 3. Check The Service
 
-<<<<<<< HEAD
 Inspect the service configuration:
-=======
-Run:
-
-```bash
-kubectl get service
-```
-
-Then:
-
->>>>>>> upstream/main
 ```bash
 kubectl describe service troubleshooting-service
 ```
 
-<<<<<<< HEAD
 **Live Cluster Output:**
 ```text
 Name:              troubleshooting-service
@@ -235,67 +158,41 @@ Key observations:
 * **Selector:** `app=troubleshooting-app`
 * **TargetPort:** `80/TCP`
 * **Endpoints:** `10.244.0.56:80,10.244.0.57:80` (Both pod IPs are bound)
-=======
-Check:
-* **Selector**
-* **TargetPort**
-* **Endpoints**
->>>>>>> upstream/main
 
 ---
 
 ## 4. Check Endpoints
 
-<<<<<<< HEAD
 Inspect endpoints directly:
-=======
-Run:
-
->>>>>>> upstream/main
 ```bash
 kubectl get endpoints troubleshooting-service
 ```
 
-<<<<<<< HEAD
 **Live Cluster Output:**
 ```text
 NAME                      ENDPOINTS                       AGE
 troubleshooting-service   10.244.0.56:80,10.244.0.57:80   45s
 ```
-=======
-You should see Pod IP addresses.
->>>>>>> upstream/main
 
 ---
 
 ## 5. Create A Broken Pod
 
-<<<<<<< HEAD
 Apply the broken pod manifest:
-=======
-Run:
-
->>>>>>> upstream/main
 ```bash
 kubectl apply -f broken-pod.yaml
 ```
 
-<<<<<<< HEAD
 **Live Cluster Output:**
 ```text
 pod/project-broken-pod created
 ```
 
 Check the pod status:
-=======
-Check:
-
->>>>>>> upstream/main
 ```bash
 kubectl get pod project-broken-pod
 ```
 
-<<<<<<< HEAD
 **Live Cluster Output:**
 ```text
 NAME                 READY   STATUS         RESTARTS   AGE
@@ -313,29 +210,10 @@ project-broken-pod   0/1     ImagePullBackOff   0          18s
 ## 6. Troubleshoot It (Without Modifying YAML First)
 
 Inspect the pod using `describe` to identify what Kubernetes attempted:
-=======
-You should see an image-related problem.
-
----
-
-## 6. Troubleshoot It
-
-You are **NOT** allowed to immediately change the YAML.
-
-First run:
-
-```bash
-kubectl get pod project-broken-pod
-```
-
-Then:
-
->>>>>>> upstream/main
 ```bash
 kubectl describe pod project-broken-pod
 ```
 
-<<<<<<< HEAD
 **Live Cluster Output (Events Section):**
 ```text
 Events:
@@ -367,36 +245,11 @@ Events:
 
 **Question 5: How would you fix it?**  
 **Answer:** Edit `broken-pod.yaml` to specify a valid image tag (such as `nginx:1.27` or `nginx:latest`), delete the broken pod (`kubectl delete pod project-broken-pod`), and apply the updated manifest (`kubectl apply -f broken-pod.yaml`).
-=======
-Then look at **Events**. Find the root cause.
-
----
-
-## 7. Your Task
-
-For the broken Pod, answer:
-
-**Question 1:** What is the Pod status?  
-*Answer:*  
-
-**Question 2:** What is the actual error?  
-*Answer:*  
-
-**Question 3:** Which command helped you find the reason?  
-*Answer:*  
-
-**Question 4:** What is wrong with the image?  
-*Answer:*  
-
-**Question 5:** How would you fix it?  
-*Answer:*  
->>>>>>> upstream/main
 
 ---
 
 ## 8. Service Troubleshooting Challenge
 
-<<<<<<< HEAD
 Intentionally break the Service selector:
 ```bash
 kubectl set selector service troubleshooting-service app=wrong-app
@@ -466,70 +319,12 @@ NAME                      ENDPOINTS                       AGE
 troubleshooting-service   10.244.0.56:80,10.244.0.57:80   85s
 ```
 Both pod endpoints are immediately restored!
-=======
-Now intentionally create a Service selector problem.
-
-Change the Service selector from:
-
-```yaml
-selector:
-  app: troubleshooting-app
-```
-
-to:
-
-```yaml
-selector:
-  app: wrong-app
-```
-
-Apply it. Then run:
-
-```bash
-kubectl get service
-```
-
-Then:
-
-```bash
-kubectl get endpoints troubleshooting-service
-```
-
-You should find: `<none>`.
-
----
-
-## 9. Find The Root Cause
-
-Run:
-
-```bash
-kubectl get pods --show-labels
-```
-
-Check the Pod label.
-
-Then:
-
-```bash
-kubectl describe service troubleshooting-service
-```
-
-Compare **Pod label** with **Service selector**. Find the mismatch and fix it.
->>>>>>> upstream/main
 
 ---
 
 ## 10. Final Troubleshooting Checklist
 
-<<<<<<< HEAD
 Before escalating or restarting workloads:
-=======
-Before saying: *"It is not working."*
-
-Always check:
-
->>>>>>> upstream/main
 ```bash
 kubectl get pods
 kubectl describe pod <pod-name>
@@ -538,28 +333,18 @@ kubectl exec -it <pod-name> -- sh
 kubectl get events
 ```
 
-<<<<<<< HEAD
 For Service & Networking issues:
 ```bash
 kubectl describe service <service-name>
 kubectl get endpoints <service-name>
 kubectl exec <client-pod> -- nslookup <service-name>
 kubectl exec <client-pod> -- wget -qO- http://<service-name>
-=======
-For Service problems:
-
-```bash
-kubectl describe service <service-name>
-kubectl get endpoints <service-name>
-nslookup <service-name>
->>>>>>> upstream/main
 ```
 
 ---
 
 ## 11. Troubleshooting Table
 
-<<<<<<< HEAD
 | Problem | What I Saw | Command I Used | Root Cause | Fix |
 | :--- | :--- | :--- | :--- | :--- |
 | **Broken Pod** | Pod stuck in `0/1 ErrImagePull` / `ImagePullBackOff` | `kubectl describe pod project-broken-pod` | Image tag `nginx:this-tag-does-not-exist` does not exist on Docker Hub registry (NotFound) | Changed image to a valid tag `nginx:1.27`, recreated pod |
@@ -626,38 +411,11 @@ Kubernetes DNS is an internal cluster DNS service (typically implemented via **C
 <service-name>.<namespace>.svc.cluster.local
 ```
 This enables decoupled service discovery: client pods can simply communicate with `http://troubleshooting-service` or `http://troubleshooting-service.default.svc.cluster.local` without needing to discover or hardcode dynamic, ephemeral Pod IP addresses.
-=======
-Fill this table in your submission:
-
-| Problem | What I Saw | Command I Used | Root Cause | Fix |
-| :--- | :--- | :--- | :--- | :--- |
-| **Broken Pod** | | | | |
-| **Service Problem** | | | | |
-| **Image Problem** | | | | |
-
----
-
-## 12. README Questions
-
-Answer these in your own words:
-
-1. What does `kubectl get` tell us?
-2. What is the difference between `get` and `describe`?
-3. Why do we use `kubectl logs`?
-4. When would you use `kubectl exec`?
-5. What does `CrashLoopBackOff` mean?
-6. What does `ImagePullBackOff` mean?
-7. Why can a Pod remain `Pending`?
-8. Why can a Service have no endpoints?
-9. What is the relationship between a Service selector and Pod labels?
-10. What is Kubernetes DNS?
->>>>>>> upstream/main
 
 ---
 
 ## 13. Final Architecture
 
-<<<<<<< HEAD
 ```text
                     Kubernetes Cluster (Minikube)
                                  │
@@ -680,60 +438,11 @@ Answer these in your own words:
         │ Port: 80          │         │ Port: 80          │
         │ [nginx:1.27]      │         │ [nginx:1.27]      │
         └───────────────────┘         └───────────────────┘
-=======
-Your final application should look like:
-
-```text
-                    Kubernetes Cluster
-                            │
-                            ▼
-                  ┌───────────────────┐
-                  │      Service      │
-                  └─────────┬─────────┘
-                            │
-                     Service Selector
-                            │
-              ┌─────────────┴─────────────┐
-              │                           │
-              ▼                           ▼
-            Pod 1                       Pod 2
-              │                           │
-              └─────────────┬─────────────┘
-                            │
-                        Nginx App
->>>>>>> upstream/main
 ```
 
 ---
 
-<<<<<<< HEAD
 ## 14. Golden Troubleshooting Rule
-=======
-## 14. What You Should Be Able To Do
-
-After completing this project, you should be comfortable with:
-
-```bash
-kubectl get
-kubectl describe
-kubectl logs
-kubectl exec
-kubectl events
-```
-
-and troubleshooting:
-* `CrashLoopBackOff`
-* `ImagePullBackOff`
-* `Pending`
-* Service problems
-* DNS problems
-
----
-
-## Final Rule
-
-When something breaks: **DON'T GUESS.**
->>>>>>> upstream/main
 
 ```text
 GET
@@ -760,8 +469,4 @@ FIX
 VERIFY
 ```
 
-<<<<<<< HEAD
 When an issue arises: **DO NOT GUESS.** Inspect the status, check the events, read the logs, verify connectivity from inside the cluster, diagnose the root cause, apply the fix, and verify resolution.
-=======
-That is the basic Kubernetes troubleshooting mindset.
->>>>>>> upstream/main

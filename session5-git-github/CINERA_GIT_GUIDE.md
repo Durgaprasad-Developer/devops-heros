@@ -188,11 +188,7 @@ feature/player     \---> [Add Video Player] --/ (Merge via PR)
 Imagine two developers modified `server/src/server.js` on different branches:
 
 ```text
-<<<<<<< HEAD (Current Changes in main)
 app.listen(5000, () => console.log('CINERA API running on port 5000'));
-=======
-app.listen(8080, () => console.log('CINERA Server started on port 8080'));
->>>>>>> feature/port-change (Incoming Changes)
 ```
 
 **Step-by-step Conflict Resolution**:

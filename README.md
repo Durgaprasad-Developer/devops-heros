@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # DevOps Heros — Comprehensive Coursework & Project Portfolio
 
 **Student Name:** Durga Prasad  
@@ -27,8 +26,8 @@
 | **03** | [Shell Scripting](session3-shell-scripting/) | System audit script (`sys_info.sh`), I/O redirection, loops | ✅ Completed |
 | **04** | [Networking Fundamentals](session4-networking/) | OSI model, IP routing, `netstat`, `curl`, DNS resolution | ✅ Completed |
 | **05** | [Git & GitHub](session5-git-github/) | `git commit -a -m`, cherry-pick workflows, branching | ✅ Completed |
-| **06** | [Docker Fundamentals](session6-docker/) | Containerizing Node.js, Python, Java, React, Apache, Nginx | ✅ Completed |
-| **07** | [Multi-Stage Builds](session6-docker/multi-stage-dockerfile/) | Image optimization, minimal runtime images | ✅ Completed |
+| **06** | [Docker Fundamentals](session6-7-docker/) | Containerizing Node.js, Python, Java, React, Apache, Nginx | ✅ Completed |
+| **07** | [Multi-Stage Builds](session6-7-docker/multi-stage-dockerfile/) | Image optimization, minimal runtime images | ✅ Completed |
 | **08** | [Docker Networking & Volumes](session8-docker-networking-volume/) | Multi-tier bridge networks, host network, bind mounts, volume persistence | ✅ Completed |
 | **09** | [Kubernetes Fundamentals](session9-k8s/) | Minikube setup, Pods, Services, Namespaces, architecture | ✅ Completed |
 | **10** | [K8s Deployment Strategies](session10-k8s-core-objects/) | Rolling updates, Blue-Green, Canary, Recreate | ✅ Completed |
@@ -43,6 +42,7 @@
 | **19** | [Cloud Terraform in Action](session19-cloud-terraform/) | Multi-resource VPC, subnets, IGW, route tables, security group, EC2 instance, S3 bucket | ✅ Completed |
 | **20** | [Observability & GitOps](session20-monitoring-observability-gitops/) | Three pillars (Metrics, Logs, Traces), Prometheus, Grafana, ArgoCD continuous reconciliation | ✅ Completed |
 | **21** | [Final DevOps Capstone](session21-python/) | TaskBoard SaaS: FastAPI + React + PostgreSQL + Docker Compose + Helm + EKS Terraform + ArgoCD | ✅ Completed |
+| **🏁** | [**Final Project Submission**](final-devops-project/) | End-to-end DevOps pipeline placeholder — see `session21-python/` for full implementation | ✅ Submitted |
 
 ---
 
@@ -54,14 +54,19 @@
 * **Infrastructure as Code:** HashiCorp Terraform, AWS (VPC, EC2, S3, IAM)
 * **Security & Quality:** Flake8, Pytest, CodeQL (SAST), pip-audit (SCA), Aqua Security Trivy
 * **Observability & GitOps:** Prometheus, Grafana, ArgoCD
-=======
-# devops-heros
 
-## DevOps HomeWork
-- https://docs.google.com/document/d/1cjXFYf2Thm8cBEN-0C48B-v02cj3jGLd47lcO18prHE/edit?usp=sharing
+---
 
-## Submission link
-- Section A: https://forms.gle/ydjAJcwxjpjBXgxB8
-- Section B: https://forms.gle/pAuXQaokwVzhRzit6                      
+## 🏁 Final Project
 
->>>>>>> upstream/main
+👉 **[final-devops-project/](final-devops-project/)** — Submission placeholder with required folder structure  
+👉 **[session21-python/](session21-python/)** — Full implementation of the TaskBoard SaaS capstone
+
+---
+
+## 📝 Submission Links
+
+| Form | Link |
+|---|---|
+| Section A (Linux, Shell, Networking, Git, Docker, Helm, K8s Troubleshooting, CI/CD, K8s Storage, Final Project, Monitoring) | [Submit Section A](https://forms.gle/ydjAJcwxjpjBXgxB8) |
+| Section B (Networking, K8s Fundamentals, K8s ConfigMaps/Ingress, Docker Images, Terraform, K8s Pods/ReplicaSets, Cloud Terraform, K8s Networking, DevSecOps, Shell Scripting) | [Submit Section B](https://forms.gle/pAuXQaokwVzhRzit6) |
