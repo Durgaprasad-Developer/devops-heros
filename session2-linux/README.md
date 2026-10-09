@@ -1,20 +1,20 @@
 # Linux Fundamentals Homework
 
-**Name:** Durga Prasad  
-**Enrollment Number:** bdurga.24bcs10012@sst.scaler.com  
+Name: Durga Prasad
+Enrollment: 10012
 
----
+## Task 1: Soft Link and Hard Link
 
-## Completed Tasks & Documentation
+Notes are in soft_hard_links.md
 
-- [Task 1: Soft Links vs Hard Links (soft_hard_links.md)](./soft_hard_links.md)
-  - Detailed experimentation on inode behavior, link creation, and file deletion mechanics.
+## Task 2: adduser vs useradd
 
-- [Task 2: User Management (user_management.md)](./user_management.md)
-  - Differences between `useradd` and `adduser` commands along with `/etc/passwd` verification log.
+Notes are in user_management.md
 
-- [Task 3: Service Log Management (journalctl_guide.md)](./journalctl_guide.md)
-  - Usage guide for `journalctl` utility covering service log inspection, error filtering, and real-time log tailing.
+## Task 3: journalctl
 
-- [Task 4: Linux Command Cheat Sheet (linux_cheat_sheet.md)](./linux_cheat_sheet.md)
-  - Comprehensive cheat sheet and practice guide covering core file, permission, system, process, and networking commands.
+Notes are in journalctl_guide.md
+
+## Task 4: Linux Command Cheat Sheet
+
+Notes are in linux_cheat_sheet.md

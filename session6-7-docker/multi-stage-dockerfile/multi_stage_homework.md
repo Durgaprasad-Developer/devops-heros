@@ -24,6 +24,10 @@ CONTAINER ID   IMAGE                  COMMAND                  CREATED          
 b8abbd751f81   multi-stage-node-app   "docker-entrypoint.s…"   11 seconds ago   Up 10 seconds   0.0.0.0:8080->3000/tcp, [::]:8080->3000/tcp   multi-stage
 ```
 
+#### Terminal Execution & `docker ps` Screenshot:
+![Multi-Stage Docker PS Screenshot](./multi_stage_ps.png)
+
+
 ---
 
 ## Task 3: Deployed Docker Applications Summary

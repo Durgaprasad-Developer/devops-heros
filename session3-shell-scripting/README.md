@@ -1,26 +1,21 @@
-# 🐚 Session 3: Shell Scripting Homework Task
+# Shell Scripting Homework
 
-**Name:** Durga Prasad  
-**Enrollment Number:** 10012  
-**Course:** SST DevOps & Cloud [SWE]  
+Name: Durga Prasad
+Enrollment: 10012
 
----
+## Task: System Information Script
 
-## 📌 Overview
-This shell script retrieves system metrics (date, hostname, username, disk usage), prompts the user for directory/log naming, creates the necessary folder and file, and redirects running process information into the log file.
+I created a shell script called sys_info.sh that does the following:
+- prints the current date
+- prints the hostname
+- prints the username
+- prints disk usage using df -h
+- takes user input using read -p to get a directory name and file name
+- creates the directory using mkdir
+- creates the file using touch
+- stores running processes in the file using ps aux and > redirection
 
----
-
-## 🛠️ Commands & Concepts Used
-- `date`, `hostname`, `whoami` — System information variables
-- `df -h` — Human-readable disk space usage
-- `read -p` — Interactive user prompt
-- `mkdir -p` & `touch` — Directory and file creation
-- `ps aux >` — Process listing & output redirection
-
----
-
-## 📜 Shell Script (`sys_info.sh`)
+## Script
 
 ```bash
 #!/bin/bash
@@ -49,24 +44,22 @@ ps aux > "$DIR_NAME/$FILE_NAME"
 echo "Successfully send running processs into $DIR_NAME/$FILE_NAME"
 ```
 
----
-
-## 📸 Script Execution Output (Terminal Screenshot)
+## Output when I ran it
 
 ```
 durga-prasad@durga-prasad-RedmiBook-15-Pro:~/devops-heros/session3-shell-scripting$ ./sys_info.sh 
 ===============================================
-Date & Time: Wed Oct  7 10:13:12 PM IST 2026
+Date & Time: Wed Sep  2 06:21:32 PM IST 2026
 Host name: durga-prasad-RedmiBook-15-Pro
 User name: durga-prasad
 ===============================================
 Disk Usage
 Filesystem      Size  Used Avail Use% Mounted on
 tmpfs           773M  3.5M  770M   1% /run
-/dev/nvme0n1p2  353G  326G  8.5G  98% /
-tmpfs           3.8G  127M  3.7G   4% /dev/shm
+/dev/nvme0n1p2  353G  308G   27G  92% /
+tmpfs           3.8G  343M  3.5G   9% /dev/shm
 tmpfs           5.0M  8.0K  5.0M   1% /run/lock
-efivarfs        184K  157K   23K  88% /sys/firmware/efi/efivars
+efivarfs        184K  156K   24K  88% /sys/firmware/efi/efivars
 /dev/nvme0n1p1  1.1G   33M  1.1G   4% /boot/efi
 tmpfs           773M  120K  773M   1% /run/user/1000
 
@@ -76,34 +69,4 @@ Create directory 'dp' and file 'dpdo' .
 Successfully send running processs into dp/dpdo
 ```
 
----
-
-## 📁 What the Script Creates
-
-| Item | Type | Description |
-|---|---|---|
-| `dp/` | Directory | Created by `mkdir -p dp` |
-| `dp/dpdo` | File | Created by `touch dp/dpdo` |
-| `dp/dpdo` contents | Process list | Written by `ps aux > dp/dpdo` |
-
----
-
-## 🔑 Key Concepts Demonstrated
-
-| Concept | Command Used | Purpose |
-|---|---|---|
-| Variables | `CURRENT_DATE=$(date)` | Store command output |
-| System info | `hostname`, `whoami` | Get host and user |
-| Disk usage | `df -h` | Human-readable disk stats |
-| User input | `read -p "..."` | Prompt for interactive input |
-| Directory creation | `mkdir -p` | Create nested directories |
-| File creation | `touch` | Create empty file |
-| Process listing | `ps aux` | Show all running processes |
-| Output redirection | `> file` | Write stdout to a file |
-
----
-
-## 🔗 GitHub Repository
-
-This script is pushed to the public repository:  
-👉 [github.com/Durgaprasad-Developer/devops-heros](https://github.com/Durgaprasad-Developer/devops-heros)
+The script is in sys_info.sh

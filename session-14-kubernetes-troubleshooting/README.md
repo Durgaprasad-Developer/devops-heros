@@ -1,19 +1,7 @@
-# Session 14: Kubernetes Troubleshooting & Diagnostic Engineering
+# Session 14: Kubernetes Troubleshooting
 
-**Author:** Durga Prasad  
-**Enrollment Number:** 10012  
-**Course:** SST DevOps & Cloud [SWE]  
-**Session:** 14 - Kubernetes Troubleshooting  
-**Repository:** devops-heros / session-14-kubernetes-troubleshooting  
-
----
-
-## Executive Summary & Core Objective
-
-The central question in production Kubernetes operations is:
-> *"My Kubernetes application is not working. How do I systematically find out why and fix it?"*
-
-This session provides hands-on mastery over the Kubernetes diagnostic toolchain, demystifying the internal control plane, runtime behavior, and failure modes across Pods, Services, and CoreDNS.
+Name: Durga Prasad
+Enrollment: 10012
 
 ---
 

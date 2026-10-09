@@ -1,10 +1,7 @@
-# Session 21 — DevOps Final Capstone: TaskBoard (Python)
+# Session 21: Final DevOps Project
 
-**Author:** Durga Prasad  
-**Enrollment Number:** 10012  
-**Course:** SST DevOps & Cloud [SWE]  
-**Session:** 21 - Final Capstone Project & Diagnostic Engineering  
-**Repository:** devops-heros / session21-python  
+Name: Durga Prasad
+Enrollment: 10012
 
 ---
 

@@ -18,3 +18,14 @@
 
 ## Multi-Stage Docker Build
 - [Multi-Stage Build Report & Port 8080 Evidence](./multi-stage-dockerfile/multi_stage_homework.md)
+
+---
+
+## 📸 Execution Screenshots
+
+### Docker Container Exec Verification
+![Docker Exec Verification](./execCmd.png)
+
+### Docker System Disk Usage Verification
+![Docker System DF](./docker_system_df.png)
+

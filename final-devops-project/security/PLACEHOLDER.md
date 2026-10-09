@@ -1,10 +1,5 @@
-# Security (DevSecOps)
+# Security
 
-> Full implementation: [../../session-17-devsecops/](../../session-17-devsecops/)
+DevSecOps implementation is in session-17-devsecops/
 
-## Tools Configured
-- **CodeQL** — SAST (Static Application Security Testing)
-- **pip-audit** — SCA (Software Composition Analysis)
-- **gitleaks** — Secret scanning
-- **Trivy** — Container image vulnerability scanning
-- **Security Gate** — Pipeline blocked if CRITICAL CVEs found
+Includes SAST, SCA, secret scanning and container image scanning.

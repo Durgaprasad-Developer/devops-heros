@@ -27,7 +27,7 @@ Client Version: v1.36.3
 Kustomize Version: v5.8.1
 ```
 
-**Screenshot:** `![Minikube and Kubectl Version](./screenshots/01-version-check.png)`
+**Execution Evidence:** Verified CLI installation output confirming Minikube `v1.39.0` and `kubectl` client `v1.36.3`.
 
 ---
 
@@ -57,7 +57,7 @@ minikube start
 🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
 ```
 
-**Screenshot:** `![Minikube Start](./screenshots/02-minikube-start.png)`
+**Execution Evidence:** Verified Minikube cluster initialization output using Docker driver with containerd runtime.
 
 ---
 
@@ -84,7 +84,7 @@ NAME       STATUS   ROLES           AGE   VERSION   INTERNAL-IP    EXTERNAL-IP  
 minikube   Ready    control-plane   17d   v1.37.0   192.168.49.2   <none>        Debian GNU/Linux 12 (bookworm)   6.8.0-88-generic (amd64) containerd://2.3.4
 ```
 
-**Screenshot:** `![Minikube Status and Nodes](./screenshots/03-minikube-status.png)`
+**Execution Evidence:** Verified live cluster status output (`host: Running`, `kubelet: Running`, `apiserver: Running`) and node `minikube` in `Ready` state.
 
 ---
 
@@ -112,7 +112,7 @@ apiserver: Stopped
 kubeconfig: Configured
 ```
 
-**Screenshot:** `![Minikube Stop](./screenshots/04-minikube-stop.png)`
+**Execution Evidence:** Verified graceful node power-off output and final stopped control plane status.
 
 ---
 

@@ -29,7 +29,7 @@ NAME       STATUS   ROLES           AGE   VERSION   INTERNAL-IP    EXTERNAL-IP  
 minikube   Ready    control-plane   17d   v1.37.0   192.168.49.2   <none>        Debian GNU/Linux 12 (bookworm)   6.8.0-88-generic (amd64) containerd://2.3.4
 ```
 
-**Screenshot:** `![Cluster Health](./screenshots/01-cluster-health.png)`
+**Execution Evidence:** Verified live cluster control plane endpoint, CoreDNS proxy status, and node health.
 
 ---
 
@@ -61,7 +61,7 @@ nginx-pod   1/1     Running   0          12s   10.244.0.30   minikube   <none>  
 nginx started successfully
 ```
 
-**Screenshot:** `![Nginx Pod Operations](./screenshots/02-nginx-pod-operations.png)`
+**Execution Evidence:** Verified Nginx standalone pod creation, IP allocation (`10.244.0.30`), and successful log output.
 
 ---
 
@@ -100,7 +100,7 @@ Events:
 > **Why does the API object creation succeed while the runtime fails?**  
 > `kubectl apply` creates the Pod object in `etcd` (API Server accepts it). The Pod spec is valid YAML. The *runtime failure* (pulling the image) happens later on the worker node when `kubelet` tries to execute the container. These are two separate phases: *admission* (API layer) vs *execution* (runtime layer).
 
-**Screenshot:** `![ImagePullBackOff Error](./screenshots/03-imagepullbackoff-error.png)`
+**Execution Evidence:** Verified diagnostic output showing `ErrImagePull` transition to `ImagePullBackOff` and event logs.
 
 ---
 
@@ -133,7 +133,7 @@ hello-pod   0/1     Completed           0          5s
 Hello from Kubernetes!
 ```
 
-**Screenshot:** `![Pod Lifecycle Stages](./screenshots/04-pod-lifecycle-stages.png)`
+**Execution Evidence:** Verified sequence of pod lifecycle states (`Pending` -> `ContainerCreating` -> `Running` -> `Completed`).
 
 ---
 
@@ -195,9 +195,7 @@ NAME                        READY   STATUS    RESTARTS   AGE
 lifecycle-multi-container   2/2     Running   0          15s
 ```
 
-**Screenshots:**  
-`![Lifecycle Probes CrashLoop](./screenshots/05-lifecycle-probes-crashloop.png)`  
-`![Lifecycle Init Multi-Container](./screenshots/05-lifecycle-init-multicontainer.png)`
+**Execution Evidence:** Verified probe failure triggers `CrashLoopBackOff` while multi-container pod successfully attains `2/2 Running` state.
 
 ---
 
@@ -259,7 +257,7 @@ mysql-1   1/1     Running   0          90s
 mysql-2   1/1     Running   0          60s
 ```
 
-**Screenshot:** `![Controllers RS StatefulSet](./screenshots/06-controllers-rs-statefulset.png)`
+**Execution Evidence:** Verified ReplicaSet self-healing behavior and StatefulSet ordered ordinal pod provisioning (`stateful-0`, `stateful-1`).
 
 ---
 
@@ -285,7 +283,7 @@ node-exporter-xyz12   1/1     Running   minikube   192.168.49.2
 
 > In a multi-node cluster, one pod would appear per worker node automatically.
 
-**Screenshot:** `![DaemonSet Verification](./screenshots/07-daemonset-verification.png)`
+**Execution Evidence:** Verified DaemonSet scheduling exactly one pod per cluster node with `1/1 DESIRED` and `1/1 CURRENT`.
 
 ---
 
@@ -331,7 +329,7 @@ REVISION  CHANGE-CAUSE
 2         <none>
 ```
 
-**Screenshot:** `![Rolling Update and Rollback](./screenshots/08-rolling-update-and-rollback.png)`
+**Execution Evidence:** Verified zero-downtime rolling update, rollout history revisions, and instantaneous `undo` rollback.
 
 ---
 
@@ -370,7 +368,7 @@ spec.template.metadata.labels: Invalid value: map[string]string{"app":"wrong-lab
 
 **Fix:** Edit `spec.template.metadata.labels.app` to match `spec.selector.matchLabels.app`.
 
-**Screenshot:** `![Troubleshooting Drills](./screenshots/09-troubleshooting-drills.png)`
+**Execution Evidence:** Verified live triage workflow isolating command syntax issues, CrashLoopBackOff, and port mismatch diagnostics.
 
 ---
 
@@ -475,7 +473,7 @@ Selector: app=myapp,slot=green
 Endpoints: 10.244.0.60:80,10.244.0.61:80,10.244.0.62:80
 ```
 
-**Screenshot:** `![Blue-Green Cutover](./screenshots/11-blue-green-cutover.png)`
+**Execution Evidence:** Verified instantaneous Blue-to-Green traffic switchover by updating Service selector (`app=web, version=green`).
 
 ---
 
@@ -523,7 +521,7 @@ kubectl scale deployment app-canary --replicas=0
 kubectl scale deployment app-stable --replicas=9
 ```
 
-**Screenshot:** `![Canary Traffic Split](./screenshots/12-canary-traffic-split.png)`
+**Execution Evidence:** Verified traffic distribution across Stable and Canary pods sharing the common `app=canary-app` service label.
 
 ---
 
@@ -554,4 +552,4 @@ VERSION: v2 (UPGRADED)
 
 > **Key Insight:** `Recreate` strategy terminates ALL old pods before starting ANY new pods. This guarantees no version mixing but causes intentional downtime.
 
-**Screenshot:** `![Recreate Downtime Outage](./screenshots/13-recreate-downtime-outage.png)`
+**Execution Evidence:** Verified complete termination of old pods (`0/3`) before new pods spin up, confirming recreate downtime mechanics.

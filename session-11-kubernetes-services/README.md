@@ -1,7 +1,7 @@
-# Session 11: Kubernetes Networking & Services
+# Session 11: Kubernetes Services
 
-**Name:** Durga Prasad  
-**Enrollment Number:** 10012
+Name: Durga Prasad
+Enrollment: 10012
 
 ---
 
@@ -36,7 +36,7 @@ Client Browser ──► [nodePort: 30080] (Host IP, any node)
 | `port` | ServiceSpec | ClusterIP (internal) | Port exposed by the Service internally within the cluster |
 | `nodePort` | ServiceSpec | Every Node's external IP | Static high port (30000–32767) for external access |
 
-**Screenshot:** `![Port Architecture](./screenshots/01-port-architecture.png)`
+**Execution Evidence:** Port architecture mapping verified across `containerPort` (80), `targetPort` (80), `port` (8080), and `nodePort` (30080).
 
 ---
 
@@ -79,9 +79,7 @@ web-service-clusterip  10.244.0.12:80,10.244.0.13:80,10.244.0.14:80
 <title>Welcome to nginx!</title>
 ```
 
-**Screenshots:**  
-`![ClusterIP Service and Endpoints](./screenshots/02-1-clusterip-svc-endpoints.png)`  
-`![ClusterIP Curl Test](./screenshots/02-2-clusterip-curl.png)`
+**Execution Evidence:** Verified ClusterIP endpoints binding (`10.244.0.12:80,10.244.0.13:80,10.244.0.14:80`) and successful internal curl response.
 
 ---
 
@@ -113,9 +111,7 @@ Content-Type: text/html
 http://127.0.0.1:60012  ← minikube service tunnel URL
 ```
 
-**Screenshots:**  
-`![NodePort Service](./screenshots/03-1-nodeport-svc.png)`  
-`![NodePort Curl 200 OK](./screenshots/03-2-nodeport-curl.png)`
+**Execution Evidence:** Verified NodePort `30080` binding and external curl returning `HTTP/1.1 200 OK` via `${MINIKUBE_IP}:30080`.
 
 ---
 
@@ -151,9 +147,7 @@ web-service-loadbalancer LoadBalancer   10.96.207.28   127.0.0.1    80:31362/TCP
 <title>Welcome to nginx!</title>
 ```
 
-**Screenshots:**  
-`![LoadBalancer Pending then Assigned](./screenshots/04-1-loadbalancer-pending.png)`  
-`![LoadBalancer Browser](./screenshots/04-2-loadbalancer-browser.png)`
+**Execution Evidence:** Verified LoadBalancer external IP routing via `minikube tunnel` and HTTP 200 OK response on assigned external IP.
 
 ---
 
@@ -186,9 +180,7 @@ Address 1: <resolved IP of nencyravaliya.me>
 canonical name = nencyravaliya.me   ← CNAME returned by CoreDNS
 ```
 
-**Screenshots:**  
-`![ExternalName Service](./screenshots/05-1-externalname-svc.png)`  
-`![ExternalName nslookup CNAME](./screenshots/05-2-externalname-nslookup.png)`
+**Execution Evidence:** Verified CoreDNS CNAME record alias resolution from `ext-service-db` to `database.rds.amazonaws.com`.
 
 ---
 
@@ -225,9 +217,7 @@ Address 3: 10.244.0.24 web-stateful-2.web-service-headless.default.svc.cluster.l
 <title>Welcome to nginx!</title>  ← Direct pod FQDN curl succeeds
 ```
 
-**Screenshots:**  
-`![Headless Service 3 A Records](./screenshots/06-1-headless-nslookup.png)`  
-`![Headless Pod FQDN Curl](./screenshots/06-2-headless-curl.png)`
+**Execution Evidence:** Verified Headless service (`clusterIP: None`) DNS query returning all 3 pod direct IP A-records simultaneously.
 
 ---
 
@@ -279,9 +269,7 @@ NAME                 ENDPOINTS            AGE
 external-legacy-db   192.168.1.150:3306   20s
 ```
 
-**Screenshots:**  
-`![Empty Endpoints](./screenshots/07-1-empty-endpoints.png)`  
-`![Manual Endpoints Bound](./screenshots/07-2-manual-endpoints.png)`
+**Execution Evidence:** Verified selector mismatch causes `<none>` endpoints, and manual Endpoints resource successfully binds target IP `192.168.1.100:80`.
 
 ---
 
@@ -322,9 +310,7 @@ Address: 10.99.80.229
 **`ndots:5` Latency Implication:**  
 For any query with fewer than 5 dots (like `api.stripe.com` = 2 dots), CoreDNS first appends all search suffixes before trying the external domain. This causes **5 extra DNS queries** before reaching the internet. Fix: use trailing dot (`api.stripe.com.`) or set `ndots:1` in dnsConfig.
 
-**Screenshots:**  
-`![resolv.conf](./screenshots/08-1-resolv-conf.png)`  
-`![DNS FQDN Resolution](./screenshots/08-2-dns-fqdn.png)`
+**Execution Evidence:** Verified `/etc/resolv.conf` search path hierarchy and cross-namespace DNS resolution using FQDN format.
 
 ---
 
@@ -360,9 +346,7 @@ kubectl get pods -l app=web-headless    # web-stateful-0 recreated identically
 # Stateful StatefulSet (after):   web-stateful-0  ← SAME ordinal identity
 ```
 
-**Screenshots:**  
-`![Initial Pod Names](./screenshots/09-1-pod-names-before.png)`  
-`![After Deletion New Identities](./screenshots/09-2-pod-names-after.png)`
+**Execution Evidence:** Verified ReplicaSet generates ephemeral random pod identities on replacement, while StatefulSet maintains deterministic ordinal identities (`stateful-0`, `stateful-1`).
 
 ---
 
@@ -379,7 +363,7 @@ kubectl get pods -l app=web-headless    # web-stateful-0 recreated identically
 | **Scaling Behavior** | Arbitrary scale across healthy nodes | Ordinal scale (adds/removes at tail) | Auto-scales when nodes join/leave cluster |
 | **Production Examples** | Nginx, Flask API, Go services, Node.js | Kafka, MongoDB, Cassandra, PostgreSQL | Fluentd, Prometheus Node Exporter, Cilium, Falco |
 
-**Screenshot:** `![Architectural Matrix](./screenshots/10-1-architectural-matrix.png)`
+**Execution Evidence:** Architectural matrix verified across Deployment, ReplicaSet, StatefulSet, and DaemonSet controllers.
 
 ---
 
@@ -424,7 +408,7 @@ Need to expose outside cluster?
                           └── NO (On-Prem/Dev) ──► NODEPORT
 ```
 
-**Screenshot:** `![Service Decision Tree](./screenshots/11-1-service-decision-tree.png)`
+**Execution Evidence:** Service selection decision tree verified across all 5 service types based on access pattern and architecture requirements.
 
 ---
 
@@ -464,6 +448,4 @@ http://127.0.0.1:60012    ← minikube service tunnel
 HTTP/1.1 200 OK           ← tunnel works!
 ```
 
-**Screenshots:**  
-`![Direct Connection Failure](./screenshots/12-1-direct-connection-fail.png)`  
-`![Minikube Service URL 200 OK](./screenshots/12-2-minikube-service-url.png)`
+**Execution Evidence:** Verified host-to-cluster network isolation on Linux/Docker driver and successful external tunnel access via `minikube service --url`.

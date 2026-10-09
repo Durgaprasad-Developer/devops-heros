@@ -1,22 +1,9 @@
-# Session 15: Helm — Package Management & Declarative Deployments
+# Session 15: Helm
 
-**Name:** Durga Prasad  
-**Enrollment Number:** 10012  
-**Course:** SST DevOps & Cloud [SWE]  
-**Session:** 15 - Helm Package Manager  
-**Repository:** devops-heros / session-15-helm  
+Name: Durga Prasad
+Enrollment: 10012
 
 ---
-
-## Executive Summary
-
-Managing plain Kubernetes manifests across multiple deployment environments (Development, Staging, Production) introduces severe configuration drift, duplicate YAML maintenance, and high operational risk during updates. 
-
-**Helm** is the official package manager for Kubernetes (graduated CNCF project). It introduces:
-1. **Parameterized Templates**: Write Kubernetes manifests once using Go templating (`{{ .Values... }}`) and supply values dynamically.
-2. **Release Versioning**: Every installation and upgrade creates an immutable revision record in cluster secrets.
-3. **Atomic Rollbacks**: Instantly roll back to previous healthy application revisions if a deployment fails.
-4. **Dependency Management**: Package complex distributed systems into composable charts.
 
 ```
                          HELM ARCHITECTURE (HELM v3)

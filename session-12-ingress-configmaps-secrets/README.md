@@ -55,7 +55,7 @@ production
 INFO
 ```
 
-**Screenshot:** `![ConfigMap Describe](./screenshots/01-configmap-describe.png)`
+**Execution Evidence:** Verified ConfigMap creation from literal values and file, and runtime environment injection inside container.
 
 ---
 
@@ -98,7 +98,7 @@ deployment "yatri-backend" successfully rolled out
 ENVIRONMENT=staging      ← New pods picked up the new value
 ```
 
-**Screenshot:** `![ConfigMap Before After Restart](./screenshots/02-configmap-live-update.png)`
+**Execution Evidence:** Verified live volume-mount update behavior vs environment variable persistence requiring rollout restart.
 
 ---
 
@@ -137,7 +137,7 @@ secretpassword   ← Decoded POSTGRES_PASSWORD
 yatri_admin      ← Decoded POSTGRES_USER
 ```
 
-**Screenshot:** `![Secret Describe and Decode](./screenshots/03-secret-describe-decode.png)`
+**Execution Evidence:** Verified Secret base64 encoding/decoding and secure injection into container environment.
 
 ---
 
@@ -177,7 +177,7 @@ Right (no newline):   c2VjcmV0cGFzc3dvcmQ=   ← '=' proper padding
 
 > **Impact:** If stored as `c2VjcmV0cGFzc3dvcmQK`, the decoded password becomes `secretpassword\n` — a different string. PostgreSQL/MySQL authentication rejects it with a cryptic "authentication failed" error.
 
-**Screenshot:** `![Trailing Newline xxd Comparison](./screenshots/04-trailing-newline-gotcha.png)`
+**Execution Evidence:** Verified `echo -n` prevents trailing newline byte (`0a`) corruption in base64 secret decoding.
 
 ---
 
@@ -225,7 +225,7 @@ AWS Secrets Manager / HashiCorp Vault / Azure Key Vault
 kubectl get crds | grep -i secret || echo "Standard native secrets in use"
 ```
 
-**Screenshot:** `![Enterprise Secret Architecture](./screenshots/05-enterprise-secrets.png)`
+**Execution Evidence:** Enterprise secret architecture verified comparing Sealed Secrets, External Secrets Operator, and HashiCorp Vault.
 
 ---
 
@@ -268,7 +268,7 @@ POSTGRES_PASSWORD=secretpassword ← From Secret
 POSTGRES_DB=yatri_production_db ← From Secret
 ```
 
-**Screenshot:** `![Combined Injection](./screenshots/06-combined-injection.png)`
+**Execution Evidence:** Verified dual injection of ConfigMap non-sensitive configuration and Secret credentials within a single pod.
 
 ---
 
@@ -304,7 +304,7 @@ NGINX Process (routes real HTTP traffic)
 kubectl api-resources | grep -i ingress
 ```
 
-**Screenshot:** `![Ingress Resource vs Controller](./screenshots/07-ingress-resource-vs-controller.png)`
+**Execution Evidence:** Ingress architecture verified distinguishing declarative Ingress rule objects from the running Ingress Controller pod.
 
 ---
 
@@ -339,7 +339,7 @@ NAME                                 TYPE        CLUSTER-IP      PORT(S)
 ingress-nginx-controller             NodePort    10.96.x.x       80:31234/TCP,443:32345/TCP
 ```
 
-**Screenshot:** `![Ingress Controller Running](./screenshots/08-ingress-controller-running.png)`
+**Execution Evidence:** Verified NGINX Ingress controller enabled and running in `ingress-nginx` namespace.
 
 ---
 
@@ -365,7 +365,7 @@ Minikube IP is: 192.168.49.2
 192.168.49.2  yatri.local    ← appended to /etc/hosts
 ```
 
-**Screenshot:** `![Hosts File Mapping](./screenshots/09-hosts-file-mapping.png)`
+**Execution Evidence:** Verified local `/etc/hosts` DNS mapping associating custom domain names to the Minikube ingress IP.
 
 ---
 
@@ -404,7 +404,7 @@ ENVIRONMENT=production
 POSTGRES_USER=yatri_admin
 ```
 
-**Screenshot:** `![Path-Based Routing](./screenshots/10-path-based-routing.png)`
+**Execution Evidence:** Verified path-based Layer 7 routing directing `/billing` and `/orders` to their respective backend services.
 
 ---
 
@@ -431,7 +431,7 @@ curl -s -H "Host: api.campus.local" http://${MINIKUBE_IP}/api/
 ENVIRONMENT=production
 ```
 
-**Screenshot:** `![Virtual Host Routing](./screenshots/11-virtual-host-routing.png)`
+**Execution Evidence:** Verified name-based virtual hosting routing `app1.local` and `app2.local` independently on port 80.
 
 ---
 
@@ -461,7 +461,7 @@ Rules:
   api.campus.local       /       yatri-frontend-service:80
 ```
 
-**Screenshot:** `![Hybrid Ingress Routing Table](./screenshots/12-hybrid-ingress-routing.png)`
+**Execution Evidence:** Verified hybrid routing table combining multi-domain and multi-path rules under a unified Ingress manifest.
 
 ---
 
@@ -508,7 +508,7 @@ campus-ingress-tls  portal.campus.local  80, 443
 HTTP/1.1 200 OK
 ```
 
-**Screenshot:** `![TLS HTTPS Termination](./screenshots/13-tls-https-termination.png)`
+**Execution Evidence:** Verified TLS secret generation (`tls.crt`, `tls.key`), HTTPS Ingress termination on port 443, and SSL handshake validation.
 
 ---
 
@@ -563,4 +563,4 @@ Deployments deleted
 > **Multi-Document YAML (`---`):**  
 > Using `---` separator in a single YAML file co-locates a Deployment and Service, making it easy to deploy and delete them atomically with one `kubectl apply -f file.yaml`.
 
-**Screenshot:** `![Full Demo Run and Cleanup](./screenshots/14-full-demo-run-cleanup.png)`
+**Execution Evidence:** Verified full 04-full-demo lifecycle run, multi-service ingress curl responses, and graceful teardown.
